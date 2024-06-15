@@ -25,6 +25,6 @@ app.get("/", async (req, res) => {
 
 
 
-app.listen(port, ()=> {
+app.listen(port, () => {
     console.log(`API is running at http://localhost:${port}`);
 });
