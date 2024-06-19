@@ -23,7 +23,23 @@ app.get("/", async (req, res) => {
 });
 
 // Route to render the edit page
+app.get("/new", (req, res) => {
+    res.render("modify.ejs", { heading: "New Post", submit: "Create Post" });
+});
 
+app.get("/edit/:id", async (req, res) => {
+    try {
+        const response = await axios.get(`${API_URL}/post/${req.params.id}`);
+        console.log(response.data);
+        res.render("modify.ejs", {
+            heading: "Edit Post",
+            submit: "Update Post",
+            post: response.data,
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching post" });
+    }
+});
 
 // Create a new post
 
